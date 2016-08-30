@@ -33,7 +33,7 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
-    "debugType": "portable"
+    "debugType": "portable" // without this line it cannot be debug the webservice in Visual Code
   },
 
   "runtimeOptions": {
