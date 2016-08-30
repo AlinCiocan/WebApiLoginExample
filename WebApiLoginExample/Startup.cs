@@ -37,6 +37,20 @@ namespace WebApiLoginExample
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+
+            app.UseCors((configurationPolicy) =>
+            {
+                configurationPolicy
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+
+
+
+
+            app.UseStaticFiles();
+
             app.UseMvc();
         }
     }
