@@ -37,6 +37,12 @@ namespace WebApiLoginExample
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            if (env.IsDevelopment() || true) // TODO: make sure to remove the "true" before in production
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            //app.UseIdentityServer();
 
             app.UseCors((configurationPolicy) =>
             {
@@ -47,11 +53,15 @@ namespace WebApiLoginExample
             });
 
 
-
-
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc(routes => 
+            {
+                routes.MapRoute(
+                    name: "Default",
+                    template: "api/{controller}/{action}/{id?}"
+                );
+            });
         }
     }
 }
